@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Router;
+namespace App\Kernel\Router;
 
 class Router{
     private array $routes = [
@@ -21,7 +21,7 @@ class Router{
             $controller = new $controller();
             call_user_func([$controller, $action]);
         }else{
-            call_user_func($route->getAction()());
+            call_user_func($route->getAction());
         }
     }
 
