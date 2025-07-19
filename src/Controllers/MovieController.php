@@ -2,8 +2,11 @@
 
 namespace App\Controllers;
 
-class MovieController{
+use App\Kernel\Controller\Controller;
+use App\Kernel\View\View;
+
+class MovieController extends Controller{
     public function index():void{
-        include_once APP_PATH . "/templates/one-movie.php";
+        $this->view('one-movie');
     }
 }

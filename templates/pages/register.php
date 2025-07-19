@@ -20,7 +20,7 @@
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li>
-                    <a href="../public/index.php" class="nav-link px-2 text-secondary d-flex align-items-center column-gap-2">
+                    <a href="../../public/index.php" class="nav-link px-2 text-secondary d-flex align-items-center column-gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
                             <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
                         </svg>
@@ -38,7 +38,7 @@
                 </li>
 
                 <li>
-                    <a href="categories.html" class="nav-link px-2 text-white d-flex align-items-center column-gap-2">
+                    <a href="categories.php" class="nav-link px-2 text-white d-flex align-items-center column-gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-reels" viewBox="0 0 16 16">
                             <path d="M6 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM1 3a2 2 0 1 0 4 0 2 2 0 0 0-4 0z"/>
                             <path d="M9 6h.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 7.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 16H2a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h7zm6 8.73V7.27l-3.5 1.555v4.35l3.5 1.556zM1 8v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1z"/>
@@ -57,7 +57,7 @@
                     </svg>
                     <span>Войти</span>
                 </a>
-                <a href="register.php" type="button" class="btn btn-warning d-flex align-items-center column-gap-2">
+                <a href="register.html" type="button" class="btn btn-warning d-flex align-items-center column-gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-add" viewBox="0 0 16 16">
                         <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>
                         <path d="M8.256 14a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Z"/>
@@ -70,19 +70,48 @@
 </header>
 
 <main>
-
     <div class="container">
-        <h3 class="mt-3">Жанры</h3>
+        <h3 class="mt-3">Регистрация</h3>
         <hr>
-        <div class="movies">
-            <a href="movie.html" class="card text-decoration-none movies__item">
-                <img src="https://glossymag.ru/thetsoaz/2021/10/000-10-glavnyh-filmov-opredelivshih-zhanr-francuzskaya-kinokomediya.jpg" height="200px" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Комедия</h5>
-                    <p class="card-text">Фильмов <span class="badge bg-info warn__badge">10</span></p>
+    </div>
+    <div class="container d-flex justify-content-center">
+
+
+        <form action="" class="d-flex flex-column justify-content-center w-50 gap-2 mt-5 mb-5">
+            <div class="row g-2">
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="name" placeholder="Иван Иванов">
+                        <label for="name">Имя</label>
+                    </div>
                 </div>
-            </a>
-        </div>
+            </div>
+            <div class="row g-2">
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input type="email" class="form-control" id="email" placeholder="name@areaweb.su">
+                        <label for="email">E-mail</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-2">
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input type="password" class="form-control" id="password" placeholder="*********">
+                        <label for="password">Пароль</label>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input type="password" class="form-control" id="password_confirmation" placeholder="*********">
+                        <label for="password_confirmation">Подтверждение</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-2">
+                <button class="btn btn-primary">Создать аккаунт</button>
+            </div>
+        </form>
     </div>
 </main>
 
