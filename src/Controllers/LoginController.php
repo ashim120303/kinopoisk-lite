@@ -1,12 +1,10 @@
 <?php
 
 namespace App\Controllers;
-
 use App\Kernel\Controller\Controller;
 
-
-class MovieController extends Controller{
+class LoginController extends Controller{
     public function index():void{
-        $this->view('one-movie');
+        $this->view('login');
     }
 }
