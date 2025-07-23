@@ -3,6 +3,7 @@
 namespace App\Kernel\Router;
 
 use App\Kernel\Controller\Controller;
+use App\Kernel\Http\Request;
 use App\Kernel\View\View;
 
 class Router{
@@ -11,7 +12,10 @@ class Router{
         'POST' => []
     ];
 
-    public function __construct(private View $view){
+    public function __construct(
+        private View $view,
+        private Request $postRequest)
+    {
         $this->initRoutes();
     }
     public function dispatch(string $uri, string $method):void{
@@ -26,6 +30,8 @@ class Router{
             $controller = new $controller();
 
             call_user_func([$controller, 'setView'], $this->view);
+            call_user_func([$controller, 'setPostRequest'], $this->postRequest);
+
             call_user_func([$controller, $action]);
         }else{
             call_user_func($route->getAction());

@@ -16,4 +16,7 @@ return[
     Route::get('/register', [RegisterController::class, 'index']),
     Route::get('/admin', [AdminController::class, 'index']),
     Route::get('/categories', [CategoriesController::class, 'index']),
+
+    Route::get('/admin/movies/add', [MovieController::class, 'add']),
+    Route::post('/admin/movies/add', [MovieController::class, 'postAdd']),
 ];
