@@ -8,7 +8,7 @@ use App\Kernel\Http\Request;
 use App\Kernel\Session\Session;
 use App\Kernel\View\View;
 
-class Router{
+class Router implements RouterInterface{
     private array $routes = [
         'GET' => [],
         'POST' => []
@@ -57,7 +57,7 @@ class Router{
         return $this->routes[$method][$uri];
     }
 
-    public function initRoutes(): void
+    private function initRoutes(): void
     {
         $routes = $this->getRoutes();
         foreach ($routes as $route){
