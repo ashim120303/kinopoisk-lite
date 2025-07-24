@@ -4,9 +4,13 @@ namespace App\Kernel\Router;
 
 use App\Kernel\Controller\Controller;
 use App\Kernel\Http\Redirect;
+use App\Kernel\Http\RedirectInterface;
 use App\Kernel\Http\Request;
+use App\Kernel\Http\RequestInterface;
 use App\Kernel\Session\Session;
+use App\Kernel\Session\SessionInterface;
 use App\Kernel\View\View;
+use App\Kernel\View\ViewInterface;
 
 class Router implements RouterInterface{
     private array $routes = [
@@ -15,10 +19,10 @@ class Router implements RouterInterface{
     ];
 
     public function __construct(
-        private View $view,
-        private Request $postRequest,
-        private Redirect $redirect,
-        private Session $session,
+        private ViewInterface $view,
+        private RequestInterface $postRequest,
+        private RedirectInterface $redirect,
+        private SessionInterface $session,
     )
     {
         $this->initRoutes();

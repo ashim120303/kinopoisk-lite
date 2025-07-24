@@ -23,7 +23,7 @@
             <?php if($session->has('name')){ ?>
                 <ul>
                     <?php foreach ($session->getFlash('name') as $error) { ?>
-                    <li style="color:red"><?php echo $error ?>f</li>
+                    <li style="color:red"><?php echo $error ?></li>
                     <?php } ?>
                 </ul>
             <?php }?>
