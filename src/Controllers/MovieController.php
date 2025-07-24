@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Kernel\Controller\Controller;
-
+use App\Kernel\Http\Redirect;
 
 class MovieController extends Controller{
     public function index():void{
@@ -15,6 +15,12 @@ class MovieController extends Controller{
     }
 
     public function postAdd():void{
-        dd($this->postRequest()->input('name'));
+        $validation = $this->postRequest()->validate([
+            'name' => ['required', 'min:3', 'max:100']
+        ]);
+        if(!$validation){
+            $this->redirect('/admin/movies/add');
+        }
+        dd('Validation Succeeded');
     }
 }

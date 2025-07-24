@@ -10,13 +10,13 @@
 <body>
     <h1>Add movie page</h1>
 
-    <form action="" method="post">
+    <form action="/admin/movies/add" method="post">
         <div>
             <p>Name</p>
-            <input type="text" name="name" id="name" required>
+            <input type="text" name="name" id="name">
         </div>
         <div>
-            <button type="submit">Submit</button>
+            <button>Submit</button>
         </div>
     </form>
 </body>
