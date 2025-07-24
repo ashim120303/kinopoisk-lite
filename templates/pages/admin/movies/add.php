@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var \App\Kernel\Session\Session $session
+ */
+
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,6 +20,13 @@
         <div>
             <p>Name</p>
             <input type="text" name="name" id="name">
+            <?php if($session->has('name')){ ?>
+                <ul>
+                    <?php foreach ($session->getFlash('name') as $error) { ?>
+                    <li style="color:red"><?php echo $error ?>f</li>
+                    <?php } ?>
+                </ul>
+            <?php }?>
         </div>
         <div>
             <button>Submit</button>

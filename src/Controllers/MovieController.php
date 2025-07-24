@@ -19,6 +19,9 @@ class MovieController extends Controller{
             'name' => ['required', 'min:3', 'max:100']
         ]);
         if(!$validation){
+            foreach($this->postRequest()->errors() as $fields=>$errors){
+                $this->session()->set($fields, $errors);
+            }
             $this->redirect('/admin/movies/add');
         }
         dd('Validation Succeeded');
