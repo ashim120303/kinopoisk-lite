@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \App\Kernel\Session\Session $session
+ * @var \App\Kernel\Session\SessionInterface $session
  */
 
 ?>
