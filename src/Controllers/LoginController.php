@@ -7,4 +7,12 @@ class LoginController extends Controller{
     public function index():void{
         $this->view('login');
     }
+
+    public function login():void
+    {
+        $email = $this->postRequest()->input('email');
+        $password = $this->postRequest()->input('password');
+        dd($this->auth()->attempt($email, $password), $_SESSION);
+    }
+
 }

@@ -17,8 +17,10 @@ return[
     Route::get('/admin', [AdminController::class, 'index']),
     Route::get('/categories', [CategoriesController::class, 'index']),
     Route::get('/testReg', [RegisterController::class, 'test']),
-    Route::post('/testReg', [RegisterController::class, 'register']),
 
+
+    Route::post('/testReg', [RegisterController::class, 'register']),
+    Route::post('/login', [LoginController::class, 'login']),
 
     Route::get('/admin/movies/add', [MovieController::class, 'add']),
     Route::post('/admin/movies/add', [MovieController::class, 'postAdd']),

@@ -68,3 +68,16 @@
         </div>
     </div>
 </header>
+
+<?php
+/**
+ * @var \App\Kernel\Auth\AuthInterface $auth
+ */
+$user = $auth->user();
+?>
+<?php if($auth->check()){?>
+<div>
+    <h6>User: <?php echo $user->getEmail()?></h6>
+    <button>Logout</button>
+</div>
+<?php } ?>

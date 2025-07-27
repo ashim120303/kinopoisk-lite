@@ -15,6 +15,18 @@ class Database implements DatabaseInterface
     {
         $this->connect();
     }
+    public function first(string $table, array $conditions = []): ?array
+    {
+        $where = '';
+        if (count($conditions)>0) {
+            $where = 'WHERE '.implode(' AND ', array_map(fn ($fields)=>"$fields = :$fields", array_keys($conditions)));
+        }
+        $sql = "SELECT * FROM $table $where LIMIT 1";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($conditions);
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $result ?: null;
+    }
     public function connect():void
     {
         $driver = $this->config->get('database.driver');
@@ -47,6 +59,4 @@ class Database implements DatabaseInterface
         }
         return (int) $this->pdo->lastInsertId();
     }
-
-
 }
