@@ -21,6 +21,7 @@ return[
 
     Route::post('/testReg', [RegisterController::class, 'register']),
     Route::post('/login', [LoginController::class, 'login']),
+    Route::post('/logout', [LoginController::class, 'logout']),
 
     Route::get('/admin/movies/add', [MovieController::class, 'add']),
     Route::post('/admin/movies/add', [MovieController::class, 'postAdd']),
