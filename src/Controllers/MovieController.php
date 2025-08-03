@@ -15,6 +15,11 @@ class MovieController extends Controller{
     }
 
     public function postAdd():void{
+        $file = $this->postRequest()->file('image');
+        $filePath = $file->move("movies");
+        dd($this->storage()->url($filePath));
+
+
         $validation = $this->postRequest()->validate([
             'name' => ['required', 'min:3', 'max:100']
         ]);

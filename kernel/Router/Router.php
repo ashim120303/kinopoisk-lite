@@ -12,6 +12,7 @@ use App\Kernel\Http\RequestInterface;
 use App\Kernel\Middleware\AbstractMiddleware;
 use App\Kernel\Session\Session;
 use App\Kernel\Session\SessionInterface;
+use App\Kernel\Storage\StorageInterface;
 use App\Kernel\View\View;
 use App\Kernel\View\ViewInterface;
 
@@ -28,6 +29,7 @@ class Router implements RouterInterface{
         private SessionInterface $session,
         private DatabaseInterface $database,
         private AuthInterface $auth,
+        private StorageInterface $storage,
     )
     {
         $this->initRoutes();
@@ -56,6 +58,7 @@ class Router implements RouterInterface{
             call_user_func([$controller, 'setSession'], $this->session);
             call_user_func([$controller, 'setDatabase'], $this->database);
             call_user_func([$controller, 'setAuth'], $this->auth);
+            call_user_func([$controller, 'setStorage'], $this->storage);
 
             call_user_func([$controller, $action]);
         }else{
