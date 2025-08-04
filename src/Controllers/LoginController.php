@@ -13,7 +13,7 @@ class LoginController extends Controller{
         $email = $this->postRequest()->input('email');
         $password = $this->postRequest()->input('password');
         $this->auth()->attempt($email, $password);
-        $this->redirect('/home');
+        $this->redirect('/');
     }
 
     public function logout():void

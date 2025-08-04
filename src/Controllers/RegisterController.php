@@ -14,19 +14,22 @@ class RegisterController extends Controller{
     public function register()
     {
         $validation = $this->postRequest()->validate([
+            'name' => ['required', 'min:2', 'max:255'],
             'email' => ['required', 'email'],
-            'password' => ['required', 'min:8'],
+            'password' => ['required', 'min:8', 'confirmed'],
+            'password_confirmation' => ['required', 'min:8'],
         ]);
         if(!$validation){
             foreach($this->postRequest()->errors() as $fields=>$errors){
                 $this->session()->set($fields, $errors);
             }
-            $this->redirect('/testReg');
+            $this->redirect('/register');
         }
-        $userId = $this->db()->insert('user', [
-            'email' =>$this->postRequest()->input('email'),
-            'password' =>password_hash($this->postRequest()->input('password'), PASSWORD_DEFAULT),
+        $this->db()->insert('user', [
+            'name' => $this->postRequest()->input('name'),
+            'email' => $this->postRequest()->input('email'),
+            'password' => password_hash($this->postRequest()->input('password'), PASSWORD_DEFAULT),
         ]);
-        dd("User created id: {$userId}");
+        $this->redirect('/login');
     }
 }
