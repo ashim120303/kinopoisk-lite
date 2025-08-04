@@ -8,6 +8,7 @@ class User
         private int $id,
         private string $email,
         private string $password,
+        private string $name,
     )
     {
 
@@ -26,5 +27,9 @@ class User
     public function getPassword(): string
     {
         return $this->password;
+    }
+    public function getName(): string
+    {
+        return $this->name;
     }
 }

@@ -55,6 +55,7 @@ class Auth implements AuthInterface
                 $user['id'],
                 $user[$this->username()],
                 $user[$this->password()],
+                $user['name'],
             );
         }
         return null;
