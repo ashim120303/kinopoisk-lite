@@ -23,15 +23,17 @@ class View implements ViewInterface{
         include_once $viewPath;
     }
 
-    public function component(string $componentName):void{
+    public function component(string $componentName, array $data = []): void {
         $componentPath = APP_PATH . "/templates/components/$componentName.php";
-        if(! file_exists($componentPath)){
+        if (!file_exists($componentPath)) {
             echo "Component $componentName does not exist";
             return;
         }
-        extract($this->defaultData());
+        extract($this->defaultData()); // глобальные переменные
+        extract($data);                // локальные, переданные вручную
         include_once $componentPath;
     }
+
     private function defaultData():array{
         return [
             'view' => $this,

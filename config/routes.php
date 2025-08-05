@@ -16,10 +16,12 @@ return[
     Route::post('/register', [RegisterController::class, 'register'], [GuestMiddleware::class]),
     Route::get('/login', [LoginController::class, 'index'], [GuestMiddleware::class]),
     Route::post('/login', [LoginController::class, 'login'], [GuestMiddleware::class]),
-    Route::post('/logout', [LoginController::class, 'logout']),
+    Route::post('/logout', [LoginController::class, 'logout'], [AuthMiddleware::class]),
+    Route::get('/admin', [AdminController::class, 'index'], [AuthMiddleware::class]),
+    Route::get('/admin/categories/add', [CategoriesController::class, 'create'], [AuthMiddleware::class]),
+
 
     Route::get('/movie', [MovieController::class, 'index']),
-    Route::get('/admin', [AdminController::class, 'index']),
     Route::get('/categories', [CategoriesController::class, 'index']),
 
 

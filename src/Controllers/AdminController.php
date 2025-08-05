@@ -6,6 +6,6 @@ use App\Kernel\Controller\Controller;
 
 class AdminController extends Controller{
     public function index():void{
-        $this->view('admin');
+        $this->view('admin/admin');
     }
 }
