@@ -19,6 +19,8 @@ return[
     Route::post('/logout', [LoginController::class, 'logout'], [AuthMiddleware::class]),
     Route::get('/admin', [AdminController::class, 'index'], [AuthMiddleware::class]),
     Route::get('/admin/categories/add', [CategoriesController::class, 'create'], [AuthMiddleware::class]),
+    Route::post('/admin/categories/add', [CategoriesController::class, 'add'], [AuthMiddleware::class]),
+
 
 
     Route::get('/movie', [MovieController::class, 'index']),

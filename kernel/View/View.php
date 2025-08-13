@@ -14,12 +14,12 @@ class View implements ViewInterface{
     ){
 
     }
-    public function page(string $pageName):void{
+    public function page(string $pageName, array $data = []):void{
         $viewPath = APP_PATH . "/templates/pages/$pageName.php";
         if(! file_exists($viewPath)){
             throw new ViewNotFoundException("View $pageName does not exist");
         }
-        extract($this->defaultData());
+        extract(array_merge($this->defaultData(), $data));
         include_once $viewPath;
     }
 
@@ -29,9 +29,9 @@ class View implements ViewInterface{
             echo "Component $componentName does not exist";
             return;
         }
-        extract($this->defaultData()); // глобальные переменные
-        extract($data);                // локальные, переданные вручную
-        include_once $componentPath;
+        extract(array_merge($this->defaultData(), $data));
+
+        include $componentPath;
     }
 
     private function defaultData():array{

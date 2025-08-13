@@ -59,4 +59,18 @@ class Database implements DatabaseInterface
         }
         return (int) $this->pdo->lastInsertId();
     }
+
+    public function get(string $table, array $conditions = []): array
+    {
+        $where = '';
+        if (count($conditions)>0) {
+            $where = 'WHERE ' .implode(' AND ', array_map(fn ($fields) => "$fields = :$fields", array_keys($conditions)));
+        }
+        $sql = "SELECT * FROM $table $where";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($conditions);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+
 }
