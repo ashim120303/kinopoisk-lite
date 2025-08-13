@@ -72,5 +72,14 @@ class Database implements DatabaseInterface
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-
+    public function destroy(string $table, array $conditions = []): void
+    {
+        $where = '';
+        if (count($conditions)>0) {
+            $where = 'WHERE ' .implode(' AND ', array_map(fn ($fields) => "$fields = :$fields", array_keys($conditions)));
+        }
+        $sql = "DELETE FROM $table $where";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($conditions);
+    }
 }

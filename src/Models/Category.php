@@ -11,6 +11,7 @@ class Category
         private string $updatedAt,
     ){
     }
+
     public function getId(){
         return $this->id;
     }

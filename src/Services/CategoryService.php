@@ -30,4 +30,18 @@ class CategoryService
         }, $categories);
         return $categories;
     }
+
+    public function destroy(int $id): void
+    {
+        $this->db->destroy('category', [
+            'id' => $id
+        ]);
+    }
+
+    public function add(string $name):int
+    {
+        return $this->db->insert('category', [
+            'name' => $name,
+        ]);
+    }
 }

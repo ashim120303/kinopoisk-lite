@@ -20,6 +20,7 @@ return[
     Route::get('/admin', [AdminController::class, 'index'], [AuthMiddleware::class]),
     Route::get('/admin/categories/add', [CategoriesController::class, 'create'], [AuthMiddleware::class]),
     Route::post('/admin/categories/add', [CategoriesController::class, 'add'], [AuthMiddleware::class]),
+    Route::post('/admin/categories/delete', [CategoriesController::class, 'delete'], [AuthMiddleware::class]),
 
 
 

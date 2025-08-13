@@ -9,4 +9,6 @@ interface DatabaseInterface
     public function first(string $table, array $conditions = []): ?array;
 
     public function get(string $table, array $conditions = []): array;
+
+    public function destroy(string $table, array $conditions = []):void;
 }

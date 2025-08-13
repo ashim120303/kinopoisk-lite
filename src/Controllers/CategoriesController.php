@@ -3,8 +3,11 @@
 namespace App\Controllers;
 
 use App\Kernel\Controller\Controller;
+use App\Services\CategoryService;
 
 class CategoriesController extends Controller{
+    private CategoryService $service;
+
     public function index():void{
         $this->view('categories');
     }
@@ -22,9 +25,21 @@ class CategoriesController extends Controller{
             }
             $this->redirect('/admin/categories/add');
         }
-        $this->db()->insert('category', [
-            'name' => $this->postRequest()->input('name'),
-        ]);
+        $this->service()->add($this->postRequest()->input('name'));
         $this->redirect('/admin');
+    }
+
+    public function delete():void
+    {
+        $this->service()->destroy($this->postRequest()->input('id'));
+        $this->redirect('/admin');
+    }
+
+    private function service():categoryService
+    {
+        if (! isset($this->service)){
+            $this->service = new CategoryService($this->db());
+        }
+        return $this->service;
     }
 }
