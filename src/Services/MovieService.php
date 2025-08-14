@@ -41,4 +41,11 @@ class MovieService
             );
         }, $movies);
     }
+
+    public function delete(int $id):void
+    {
+        $this->db->destroy('movie', [
+            'id' => $id
+        ]);
+    }
 }

@@ -23,7 +23,7 @@ class MovieController extends Controller{
 
     public function postAdd():void{
         $validation = $this->postRequest()->validate([
-            'name' => ['required', 'min:3', 'max:50'],
+            'name' => ['required', 'min:3', 'max:255'],
             'description' => ['required'],
             'category' => ['required'],
         ]);
@@ -39,6 +39,12 @@ class MovieController extends Controller{
             $this->postRequest()->file('image'),
             $this->postRequest()->input('category'),
         );
+        $this->redirect('/admin');
+    }
+
+    public function delete():void
+    {
+        $this->service()->delete($this->postRequest()->input('id'));
         $this->redirect('/admin');
     }
 

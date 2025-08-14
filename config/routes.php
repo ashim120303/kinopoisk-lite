@@ -26,6 +26,7 @@ return[
     Route::get('/movie', [MovieController::class, 'index']),
     Route::get('/admin/movies/add', [MovieController::class, 'add'], [AuthMiddleware::class]),
     Route::post('/admin/movies/add', [MovieController::class, 'postAdd'], [AuthMiddleware::class]),
+    Route::post('/admin/movies/delete', [MovieController::class, 'delete'], [AuthMiddleware::class]),
 
 
     Route::get('/categories', [CategoriesController::class, 'index']),

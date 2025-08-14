@@ -69,7 +69,6 @@ $view->component('header', [
             <div class="row g-2 mb-3">
                 <label for="image">Выбрать Жанр</label>
                 <select name="category" aria-label="Default select example">
-                    <option selected>Жанр</option>
                     <?php foreach ($categories as $category) { ?>
                         <option value="<?php echo $category->getId(); ?>">
                             <?php echo $category->getName(); ?>
