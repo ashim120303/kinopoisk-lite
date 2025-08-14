@@ -23,14 +23,10 @@ return[
     Route::post('/admin/categories/delete', [CategoriesController::class, 'delete'], [AuthMiddleware::class]),
     Route::post('/admin/categories/update', [CategoriesController::class, 'update'], [AuthMiddleware::class]),
     Route::get('/admin/categories/update', [CategoriesController::class, 'edit'], [AuthMiddleware::class]),
-
-
-
     Route::get('/movie', [MovieController::class, 'index']),
-    Route::get('/categories', [CategoriesController::class, 'index']),
-
-
-
     Route::get('/admin/movies/add', [MovieController::class, 'add'], [AuthMiddleware::class]),
-    Route::post('/admin/movies/add', [MovieController::class, 'postAdd']),
+    Route::post('/admin/movies/add', [MovieController::class, 'postAdd'], [AuthMiddleware::class]),
+
+
+    Route::get('/categories', [CategoriesController::class, 'index']),
 ];
