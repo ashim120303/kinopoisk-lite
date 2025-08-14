@@ -35,6 +35,30 @@ class CategoriesController extends Controller{
         $this->redirect('/admin');
     }
 
+    public function edit():void
+    {
+        $category = $this->service()->find($this->postRequest()->input('id'));
+        $this->view('/admin/categories/edit', ['category' => $category]);
+    }
+
+    public function update():void
+    {
+        $validation = $this->postRequest()->validate([
+            'name' => ['required', 'min:3', 'max:255'],
+        ]);
+        if(!$validation){
+            foreach ($this->postRequest()->errors() as $fields=>$errors){
+                $this->session()->set($fields, $errors);
+            }
+            $this->redirect("/admin/categories/update?id={$this->postRequest()->input('id')}");
+        }
+        $this->service()->update(
+            $this->postRequest()->input('id'),
+            $this->postRequest()->input('name')
+        );
+        $this->redirect('/admin');
+    }
+
     private function service():categoryService
     {
         if (! isset($this->service)){
