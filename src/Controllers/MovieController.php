@@ -10,7 +10,9 @@ use App\Services\MovieService;
 class MovieController extends Controller{
     private MovieService $service;
     public function index():void{
-        $this->view('one-movie');
+        $this->view('one-movie', [
+            'movie' => $this->service()->find($this->postRequest()->input('id')),
+        ]);
     }
 
 

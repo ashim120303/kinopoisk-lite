@@ -1,6 +1,8 @@
 <?php
 /**
  * @var \App\Kernel\View $view
+ * @var \App\Kernel\Storage\Storage $storage
+ * @var \App\Models\Movie $movie
  */
 $view->component('header');
 ?>
@@ -10,7 +12,7 @@ $view->component('header');
             <div class="card mb-3 mt-3 one-movie__item">
                 <div class="row g-3">
                     <div class="col-md-4">
-                        <img  src="https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/21324634-7afd-4443-8ac4-5c4097ac5b6c/600x900" class="img-fluid rounded one-movie__image" alt="...">
+                        <img  src="<?php echo $storage->url($movie->getPreview()); ?>" class="img-fluid rounded one-movie__image" alt="<?php echo $movie->getName(); ?>">
                         <form action="" class="m-3 w-100">
                             <select class="form-select" aria-label="Default select example">
                                 <option selected>Оценка</option>
@@ -34,10 +36,10 @@ $view->component('header');
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h1 class="card-title">Пацаны</h1>
+                            <h1 class="card-title"><?php echo $movie->getName(); ?></h1>
                             <p class="card-text">Оценка <span class="badge bg-warning warn__badge">7.9</span></p>
-                            <p class="card-text">Действие сериала разворачивается в мире, где существуют супергерои. Именно они являются настоящими звездами. Их все знают и обожают. Но за идеальным фасадом скрывается гораздо более мрачный мир наркотиков и секса, а большинство героев — в жизни не самые приятные люди. Противостоит им отряд, неофициально известный как «Пацаны».</p>
-                            <p class="card-text"><small class="text-body-secondary">Добавлен 24/12/2023</small></p>
+                            <p class="card-text"><?php echo $movie->getDescription(); ?></p>
+                            <p class="card-text"><small class="text-body-secondary">Добавлен <?php echo $movie->getCreatedAt(); ?></small></p>
                             <h4>Отзывы</h4>
                             <div class="one-movie__reviews">
                                 <div class="card">
