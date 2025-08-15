@@ -14,6 +14,6 @@ class AdminController extends Controller{
         $this->view('admin/admin', [
             'categories' => $categories->all(),
             'movies' => $movies->all(),
-        ]);
+        ], 'Админка');
     }
 }

@@ -12,7 +12,7 @@ class MovieController extends Controller{
     public function index():void{
         $this->view('one-movie', [
             'movie' => $this->service()->find($this->postRequest()->input('id')),
-        ]);
+        ], 'Страница фильма');
     }
 
 
@@ -20,7 +20,7 @@ class MovieController extends Controller{
         $categories = new CategoryService($this->db());
         $this->view('admin/movies/add', [
             'categories' => $categories->all(),
-        ]);
+        ], 'Добавить фильм');
     }
 
     public function postAdd():void{
@@ -63,7 +63,7 @@ class MovieController extends Controller{
         $this->view('admin/movies/edit', [
             'movie' => $this->service()->find($this->postRequest()->input('id')),
             'categories' => $categories->all(),
-        ]);
+        ], 'Редактировать фильм');
     }
 
     public function update()

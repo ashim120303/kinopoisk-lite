@@ -5,13 +5,10 @@ use App\Kernel\Controller\Controller;
 
 class RegisterController extends Controller{
     public function index():void{
-        $this->view('register');
-    }
-    public function test():void{
-        $this->view('testReg');
+        $this->view('register', title: 'Зарегистрироваться');
     }
 
-    public function register()
+    public function register(): void
     {
         $validation = $this->postRequest()->validate([
             'name' => ['required', 'min:2', 'max:255'],

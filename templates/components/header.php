@@ -1,6 +1,7 @@
 <?php
 /**
  * @var \App\Kernel\Auth\AuthInterface $auth
+ * @var \App\Kernel\View\ViewInterface $view
  */
 $user = $auth->user();
 $bootstrap = $bootstrap ?? 'assets/css/bootstrap.min.css';
@@ -13,7 +14,7 @@ $js = $js ?? 'assets/js/color-modes.js';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title><?php echo $view->getTitle(); ?></title>
     <link rel="stylesheet" href="<?php echo $bootstrap ?>">
     <link rel="stylesheet" href="<?php echo $app ?>">
     <script src="<?php echo $js ?>"></script>

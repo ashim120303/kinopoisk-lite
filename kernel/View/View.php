@@ -9,6 +9,7 @@ use App\Kernel\Session\SessionInterface;
 use App\Kernel\Storage\StorageInterface;
 
 class View implements ViewInterface{
+    private string $title;
     public function __construct(
         private SessionInterface $session,
         private AuthInterface $auth,
@@ -16,7 +17,8 @@ class View implements ViewInterface{
     ){
 
     }
-    public function page(string $pageName, array $data = []):void{
+    public function page(string $pageName, array $data = [], string $title = ''):void{
+        $this->title = $title;
         $viewPath = APP_PATH . "/templates/pages/$pageName.php";
         if(! file_exists($viewPath)){
             throw new ViewNotFoundException("View $pageName does not exist");
@@ -43,5 +45,10 @@ class View implements ViewInterface{
             'auth' => $this->auth,
             'storage' => $this->storage,
         ];
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
     }
 }

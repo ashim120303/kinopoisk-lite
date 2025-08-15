@@ -23,8 +23,8 @@ abstract class Controller{
     private AuthInterface $auth;
     private StorageInterface $storage;
 
-    public function view(string $viewName, array $data = []):void{
-        $this->view->page($viewName, $data);
+    public function view(string $viewName, array $data = [], string $title = ''):void{
+        $this->view->page($viewName, $data, $title);
     }
     public function setView(ViewInterface $view): void{$this->view = $view;}
 

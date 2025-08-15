@@ -5,7 +5,7 @@ use App\Kernel\Controller\Controller;
 
 class LoginController extends Controller{
     public function index():void{
-        $this->view('login');
+        $this->view('login', title: 'Войти');
     }
 
     public function login():void

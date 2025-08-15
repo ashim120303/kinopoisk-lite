@@ -9,10 +9,12 @@ class CategoriesController extends Controller{
     private CategoryService $service;
 
     public function index():void{
-        $this->view('categories');
+        $this->view('categories', [
+            'categories' => $this->service()->all(),
+        ], 'Категории');
     }
     public function create():void{
-        $this->view('admin/categories/add');
+        $this->view('admin/categories/add', title: 'Создать категорию');
     }
 
     public function add():void{
@@ -38,7 +40,7 @@ class CategoriesController extends Controller{
     public function edit():void
     {
         $category = $this->service()->find($this->postRequest()->input('id'));
-        $this->view('/admin/categories/edit', ['category' => $category]);
+        $this->view('/admin/categories/edit', ['category' => $category], 'Редактировать категорию');
     }
 
     public function update():void
