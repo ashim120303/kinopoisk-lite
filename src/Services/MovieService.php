@@ -101,6 +101,7 @@ class MovieService
                 $movie['preview'],
                 $movie['category_id'],
                 $movie['created_at'],
+                $this->getReviews($movie['id']),
             );
         }, $movies);
     }

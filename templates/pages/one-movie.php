@@ -65,7 +65,7 @@ $view->component('header');
                     <div class="col-md-8">
                         <div class="card-body">
                             <h1 class="card-title"><?php echo $movie->getName(); ?></h1>
-                            <p class="card-text">Оценка <span class="badge bg-warning warn__badge">7.9</span></p>
+                            <p class="card-text">Оценка <span class="badge bg-warning warn__badge"><?php echo $movie->avgRating()?></span></p>
                             <p class="card-text"><?php echo $movie->getDescription(); ?></p>
                             <p class="card-text"><small class="text-body-secondary">Добавлен <?php echo $movie->getCreatedAt(); ?></small></p>
                             <h4>Отзывы</h4>
