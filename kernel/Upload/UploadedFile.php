@@ -35,4 +35,11 @@ class UploadedFile implements UploadedFileInterface
     private function randomFileName(): string{
         return md5(uniqid(rand(), true)).".{$this->getExtension()}";
     }
+
+    public function hasErrors(): bool
+    {
+        return $this->error !== UPLOAD_ERR_OK;
+    }
+
+
 }

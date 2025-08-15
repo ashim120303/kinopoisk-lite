@@ -48,4 +48,49 @@ class MovieService
             'id' => $id
         ]);
     }
+
+    public function find(int $id): ?Movie
+    {
+        $movie = $this->db->first('movie', ['id' => $id]);
+        if(!$movie){
+            return null;
+        }
+        return new Movie(
+            $movie['id'],
+            $movie['name'],
+            $movie['description'],
+            $movie['preview'],
+            $movie['category_id']
+        );
+    }
+
+    public function update(int $id, string $name, string $description, ?UploadedFileInterface $image, int $category): void
+    {
+        $data = [
+            'name' => $name,
+            'description' => $description,
+            'category_id' => $category,
+        ];
+        if($image && !$image->hasErrors()){
+            $data['preview'] = $image->move('movies');;
+        }
+        $filePath = $image->move('movies');
+        $this->db->update('movie', $data, ['id' => $id]);
+    }
+
+    public function new(): array
+    {
+        $movies = $this->db->get('movie',
+            [],
+            ['id' => 'DESC'], 5);
+        return array_map(function ($movie) {
+            return new Movie(
+                $movie['id'],
+                $movie['name'],
+                $movie['description'],
+                $movie['preview'],
+                $movie['category_id'],
+            );
+        }, $movies);
+    }
 }

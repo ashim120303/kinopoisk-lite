@@ -13,7 +13,7 @@ class LoginController extends Controller{
         $email = $this->postRequest()->input('email');
         $password = $this->postRequest()->input('password');
         if ($this->auth()->attempt($email, $password)){
-            $this->redirect('/');
+            $this->redirect('/admin');
         }
         $this->session()->set('error', 'неверный логин или пароль');
         $this->redirect('/login');

@@ -13,7 +13,7 @@ class AdminController extends Controller{
         $movies = new MovieService($this->db());
         $this->view('admin/admin', [
             'categories' => $categories->all(),
-            'movies' => $movies->all()
+            'movies' => $movies->all(),
         ]);
     }
 }
