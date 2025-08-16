@@ -39,6 +39,4 @@ class Review
     {
         return $this->user;
     }
-
-
 }

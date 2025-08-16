@@ -32,6 +32,7 @@ return[
     Route::get('/admin/movies/edit', [MovieController::class, 'edit'], [AuthMiddleware::class]),
     Route::post('/admin/movies/edit', [MovieController::class, 'update'], [AuthMiddleware::class]),
     Route::get('/categories', [CategoriesController::class, 'index']),
+    Route::get('/categories/movies', [CategoriesController::class, 'show']),
 
 
 ];

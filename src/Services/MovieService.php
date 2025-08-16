@@ -151,4 +151,33 @@ class MovieService
             );
         }, $reviews);
     }
+    public function countsByCategory(): array
+    {
+        $movies = $this->db->get('movie'); // все фильмы
+        $counts = [];
+        foreach ($movies as $m) {
+            $cid = (int)($m['category_id'] ?? 0);
+            if (!isset($counts[$cid])) {
+                $counts[$cid] = 0;
+            }
+            $counts[$cid]++;
+        }
+        return $counts; // [category_id => count]
+    }
+    public function getByCategory(int $categoryId): array
+    {
+        $movies = $this->db->get('movie', ['category_id' => $categoryId]);
+
+        return array_map(function($movie) {
+            return new Movie(
+                $movie['id'],
+                $movie['name'],
+                $movie['description'],
+                $movie['preview'],
+                $movie['category_id'],
+                $movie['created_at'],
+                $this->getReviews($movie['id']),
+            );
+        }, $movies);
+    }
 }

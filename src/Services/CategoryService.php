@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Kernel\Database\DatabaseInterface;
 use App\Models\Category;
+use App\Models\Movie;
 
 class CategoryService
 {
@@ -68,5 +69,24 @@ class CategoryService
         ], [
             'id' => $id
         ]);
+    }
+
+    public function allWithMoviesCount(): array
+    {
+        $movieService = new MovieService($this->db);
+        $counts = $movieService->countsByCategory();
+
+        $rows = $this->db->get('category');
+
+        return array_map(function ($category) use ($counts) {
+            $cid = (int)$category['id'];
+            return new Category(
+                id: $cid,
+                name: $category['name'],
+                createdAt: $category['created_at'],
+                updatedAt: $category['updated_at'],
+                moviesCount: $counts[$cid] ?? 0
+            );
+        }, $rows);
     }
 }

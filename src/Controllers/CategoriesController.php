@@ -4,13 +4,14 @@ namespace App\Controllers;
 
 use App\Kernel\Controller\Controller;
 use App\Services\CategoryService;
+use App\Services\MovieService;
 
 class CategoriesController extends Controller{
     private CategoryService $service;
 
     public function index():void{
         $this->view('categories', [
-            'categories' => $this->service()->all(),
+            'categories' => $this->service()->allWithMoviesCount(),
         ], 'Категории');
     }
     public function create():void{
@@ -67,5 +68,15 @@ class CategoriesController extends Controller{
             $this->service = new CategoryService($this->db());
         }
         return $this->service;
+    }
+
+    public function show(): void
+    {
+        $categoryId = (int)$this->postRequest()->input('id');
+        $movieService = new MovieService($this->db());
+        $movies = $movieService->getByCategory($categoryId);
+        $this->view('category-movies', [
+            'movies' => $movies,
+        ], 'Фильмы категории');
     }
 }

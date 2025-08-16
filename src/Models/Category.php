@@ -9,6 +9,7 @@ class Category
         private string $name,
         private string $createdAt,
         private string $updatedAt,
+        private int $moviesCount = 0,
     ){
     }
 
@@ -25,4 +26,5 @@ class Category
         return $this->updatedAt;
     }
 
+    public function getMoviesCount(): int { return $this->moviesCount; }
 }
