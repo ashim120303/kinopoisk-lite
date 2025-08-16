@@ -30,7 +30,7 @@ $js = $js ?? 'assets/js/color-modes.js';
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li>
-                    <a href="/" class="nav-link px-2 text-secondary d-flex align-items-center column-gap-2">
+                    <a href="/" class="nav-link px-2 text-white d-flex align-items-center column-gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
                             <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
                         </svg>
@@ -61,7 +61,7 @@ $js = $js ?? 'assets/js/color-modes.js';
 
             <div class="d-flex align-items-center text-end column-gap-4">
                 <?php if($auth->check()){?>
-                    <p class="m-0"><?php echo $user->getName()?></p>
+                    <a class="nav-link px-2 text-white" href="/admin" class="m-0"><?php echo $user->getName()?></a>
                     <form action="/logout" method="post">
                         <button type="submit" class="btn btn-outline-light me-2 d-flex align-items-center column-gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">

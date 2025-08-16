@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\AdminController;
+use App\Controllers\BestController;
 use App\Controllers\CategoriesController;
 use App\Controllers\HomeController;
 use App\Controllers\LoginController;
@@ -33,6 +34,7 @@ return[
     Route::post('/admin/movies/edit', [MovieController::class, 'update'], [AuthMiddleware::class]),
     Route::get('/categories', [CategoriesController::class, 'index']),
     Route::get('/categories/movies', [CategoriesController::class, 'show']),
+    Route::get('/best', [BestController::class, 'index']),
 
 
 ];

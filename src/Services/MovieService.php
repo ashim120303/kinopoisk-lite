@@ -180,4 +180,29 @@ class MovieService
             );
         }, $movies);
     }
+
+    public function best(): array
+    {
+        $movies = $this->db->get('movie'); // получаем все фильмы
+
+        // Создаём массив объектов Movie
+        $movies = array_map(function($movie) {
+            return new Movie(
+                $movie['id'],
+                $movie['name'],
+                $movie['description'],
+                $movie['preview'],
+                $movie['category_id'],
+                $movie['created_at'],
+                $this->getReviews($movie['id']) // нужны для avgRating
+            );
+        }, $movies);
+
+        // Сортируем по средней оценке (от большего к меньшему)
+        usort($movies, function($a, $b) {
+            return $b->avgRating() <=> $a->avgRating();
+        });
+
+        return $movies;
+    }
 }
