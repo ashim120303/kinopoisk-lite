@@ -45,11 +45,25 @@ class MovieService
         }, $movies);
     }
 
-    public function delete(int $id):void
+    public function delete(int $id): void
     {
-        $this->db->destroy('movie', [
-            'id' => $id
-        ]);
+        $movie = $this->db->first('movie', ['id' => $id]);
+
+        if ($movie && !empty($movie['preview'])) {
+            $this->removeFile($movie['preview']);
+        }
+
+        $this->db->destroy('movie', ['id' => $id]);
+    }
+
+    private function removeFile(?string $path): void
+    {
+        if ($path) {
+            $fullPath = __DIR__ . '/../../storage/' . $path; // подстрой путь
+            if (file_exists($fullPath)) {
+                unlink($fullPath);
+            }
+        }
     }
 
     public function find(int $id): ?Movie
@@ -81,10 +95,19 @@ class MovieService
             'description' => $description,
             'category_id' => $category,
         ];
-        if($image && !$image->hasErrors()){
-            $data['preview'] = $image->move('movies');;
+
+        $movie = $this->db->first('movie', ['id' => $id]);
+
+        if ($image && !$image->hasErrors()) {
+            // удаляем старый файл, если был
+            if ($movie && !empty($movie['preview'])) {
+                $this->removeFile($movie['preview']);
+            }
+
+            // грузим новый
+            $data['preview'] = $image->move('movies');
         }
-        $filePath = $image->move('movies');
+
         $this->db->update('movie', $data, ['id' => $id]);
     }
 
