@@ -74,8 +74,9 @@ $view->component('header', [
                 <label for="image">Изменить жанр</label>
                 <select name="category" aria-label="Default select example">
                     <?php foreach ($categories as $category) { ?>
-                        <option value="<?php echo $category->getId(); ?>" <?php echo $category->getId() === $movie->getId() ? 'selected' : ''; ?>>
-                            <?php echo $category->getName(); ?>
+                        <option value="<?= $category->getId(); ?>"
+                            <?= $category->getId() == $movie->getCategoryId() ? 'selected' : ''; ?>>
+                            <?= htmlspecialchars($category->getName()); ?>
                         </option>
                     <?php } ?>
                 </select>
